@@ -1,0 +1,88 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/location": {
+            "post": {
+                "description": "Get Location",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Get Location"
+                ],
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "Coordinates",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Coordinates"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Location"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/errors.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "errors.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "error_code": {
+                    "type": "string"
+                },
+                "error_message": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.Coordinates": {
+            "type": "object",
+            "properties": {
+                "vel": {
+                    "type": "string"
+                },
+                "x": {
+                    "type": "string"
+                },
+                "y": {
+                    "type": "string"
+                },
+                "z": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Location": {
+            "type": "object",
+            "properties": {
+                "loc": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}

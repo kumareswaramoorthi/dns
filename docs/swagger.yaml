@@ -1,0 +1,55 @@
+definitions:
+  errors.ErrorResponse:
+    properties:
+      error_code:
+        type: string
+      error_message:
+        type: string
+      status:
+        type: integer
+    type: object
+  models.Coordinates:
+    properties:
+      vel:
+        type: string
+      x:
+        type: string
+      "y":
+        type: string
+      z:
+        type: string
+    type: object
+  models.Location:
+    properties:
+      loc:
+        type: number
+    type: object
+info:
+  contact: {}
+paths:
+  /location:
+    post:
+      consumes:
+      - application/json
+      description: Get Location
+      parameters:
+      - description: request body
+        in: body
+        name: Coordinates
+        required: true
+        schema:
+          $ref: '#/definitions/models.Coordinates'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Location'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errors.ErrorResponse'
+      tags:
+      - Get Location
+swagger: "2.0"
